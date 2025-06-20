@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>เมนูร้านค้า</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🌿 ชื่อร้านค้า</div>
+    <a href="cart.html" class="cart-icon">🛒</a>
+  </header>
+
+  <div class="category">
+    <button>เครื่องดื่ม</button>
+    <button>ขนมหวาน</button>
+    <button>อาหาร</button>
+    <button>ของว่าง</button>
+  </div>
+
+  <div class="card-grid" id="menuList"></div>
+
+  <script>
+    const menu = [
+      { id: 1, name: "ชาเขียวมัจฉะ", price: 75, image: "assets/greentea.png" },
+      { id: 2, name: "ชาไทย", price: 75, image: "assets/greentea.png" },
+      { id: 3, name: "กาแฟ", price: 75, image: "assets/greentea.png" }
+    ];
+
+    const menuList = document.getElementById("menuList");
+
+    menu.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <p>${item.price} บ.</p>
+        <button class="btn-select" onclick="goToDetail(${item.id})">เลือก</button>
+      `;
+      menuList.appendChild(card);
+    });
+
+    function goToDetail(id) {
+      localStorage.setItem("selectedItem", JSON.stringify(menu.find(m => m.id === id)));
+      window.location.href = "details.html";
+    }
+  </script>
+</body>
+</html>
