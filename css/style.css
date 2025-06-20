@@ -11,18 +11,79 @@ body {/*ลักษณะทั่วไปของหน้าเว็บ*/
   justify-content: space-between;  /* เว้นช่องว่างระหว่างสองฝั่งซ้าย-ขวา */
   align-items: center;             /* จัดให้เนื้อหาตรงกลางในแนวตั้ง */
   text-align: center;
-  background: #85b4cc;             /* สีพื้นหลังเทาเข้ม */
+  background: #97bee4;             /* สีพื้นหลังเทาเข้ม */
   padding:20px 10px;              /* ด้านบน-ล่าง 1024px, ซ้าย-ขวา 1024px */
   border-radius: 10px;             /* มุมกล่องมน 10px */
 }
+/***************************************************************************************************************************/
 
-
-.category {  /*แถบหมวดหมู่ อาหาร*/
-  display: flex;                   /* เรียงปุ่มหมวดหมู่ในแนวนอน */
-  gap: 20px;                       /* ระยะห่างระหว่างปุ่มแต่ละอัน */
-  margin: 20px 0;                  /* ระยะห่างบน-ล่าง 20px */
+.category {
+  display: flex;                  /* เรียงปุ่มเป็นแนวนอนแบบ flexbox */
+  gap: 12px;                      /* เว้นระยะห่างระหว่างปุ่ม 12px */
+  margin: 20px 0;                 /* เว้นระยะห่างบน-ล่าง 20px */
+  justify-content: center;       /* จัดปุ่มให้อยู่ตรงกลางแนวนอน */
+  flex-wrap: wrap;               /* ถ้าปุ่มล้นจอ จะแสดงปุ่มในบรรทัดถัดไป */
 }
 
+.category button {
+  padding: 10px 20px;                        /* ขนาดพื้นที่ภายในปุ่ม (top-bottom 10px, left-right 20px) */
+  font-size: 16px;                           /* ขนาดตัวอักษรในปุ่ม */
+  font-family: 'Segoe UI', sans-serif;       /* ฟอนต์ดูสบายตาและทันสมัย */
+  border: none;                              /* เอาเส้นขอบปุ่มออก */
+  border-radius: 8px;                        /* มุมปุ่มโค้งมน 8px */
+  background-color: #f0f0f0;                 /* สีพื้นหลังเทาอ่อน */
+  color: #333;                               /* สีตัวอักษรเทาเข้ม */
+  cursor: pointer;                           /* เมื่อเอาเมาส์ไปชี้ จะเปลี่ยนเป็นรูปลูกศรมือ */
+  transition: all 0.2s ease-in-out;          /* เอฟเฟกต์เปลี่ยนลื่น ๆ ภายใน 0.2 วินาที */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);     /* เงาด้านล่างเบา ๆ ให้ปุ่มดูนูนเล็กน้อย */
+}
+
+.category button:hover {
+  background-color: #85b4cc;                /* เปลี่ยนพื้นหลังเป็นเหลืองอ่อน */
+  color: #000;                              /* สีตัวอักษรเป็นดำ */
+  transform: translateY(-2px);              /* ขยับปุ่มขึ้นเล็กน้อย (ลอยขึ้น 2px) */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);   /* เพิ่มเงาให้ดูนูนมากขึ้น */
+}
+
+.category button.active {
+  background-color: #97bee4;    /* เปลี่ยนพื้นหลังเป็นสีส้ม */
+  color: white;                 /* ตัวอักษรสีขาว */
+}
+
+/************************************************************************************************************************************/
+/* โหลดฟอนต์ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Sriracha&display=swap');
+
+.header {
+  background-color: #fffdf7;               /* สีพื้นอ่อน ๆ เหมือนกระดาษ */
+  padding: 16px 24px;
+  margin: 20px auto;
+  border-radius: 16px;                     /* มุมโค้งน่ารัก */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);/* เงาแบบการ์ด */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;                        /* กำหนดความกว้างไม่ให้กว้างเกินไป */
+  font-family: 'Sriracha', cursive;        /* ฟอนต์ไทยสไตล์เขียนมือ */
+}
+
+.logo {
+  font-size: 30px;
+  color: #040700;                          /* สีเขียวธรรมชาติ */
+}
+
+.cart-icon {
+  font-size: 24px;
+  text-decoration: none;
+  color: #555;
+  transition: transform 0.2s ease;
+}
+
+.cart-icon:hover {
+  transform: scale(1.2);                   /* ขยายตอนเอาเมาส์วาง */
+  color: #f59e0b;                          /* สีส้มเข้ากับธีม */
+}
+/******************************************************************************************************************************/
 
 .card-grid {  /*กล่องแสดงเมนูหลายอัน*/
   display: grid;                                      /* แสดงรายการเป็นตาราง */
@@ -30,6 +91,10 @@ body {/*ลักษณะทั่วไปของหน้าเว็บ*/
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   /* สร้างคอลัมน์อัตโนมัติ โดยให้แต่ละคอลัมน์กว้างอย่างน้อย 50px */
   /* และขยายเท่าที่เหลือในแถว (1fr = 1 ส่วนของพื้นที่ที่เหลือ) */
+}
+
+.card:hover {
+  background: #2a8dc7;           /* สีน้ำฟ้าเข้มขึ้นเมื่อ hover */
 }
 
 .card {   /*กล่องแสดงสินค้าทีละอัน*/
@@ -73,5 +138,81 @@ body {/*ลักษณะทั่วไปของหน้าเว็บ*/
 
 .btn-select:hover {
   background: #27ae60;           /* สีเขียวเข้มขึ้นเมื่อ hover */
+}
+/*************************************************************************************************************/
+
+.detail-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ===== ชื่อเมนู ===== */
+.detail-card h2 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* ===== รูปภาพ ===== */
+.detail-card img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* ===== ปุ่มปรับจำนวน ===== */
+.detail-card div > button {
+  font-size: 18px;
+  padding: 8px 16px;
+  margin: 4px;
+  border: none;
+  border-radius: 8px;
+  background-color: #fcd34d; /* สีเหลือง */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.detail-card div > button:hover {
+  background-color: #fbbf24;
+}
+
+/* ===== ปุ่มเลือก อุณหภูมิ/ความหวาน ===== */
+.detail-card div > p {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.detail-card span {
+  font-size: 20px;
+  margin: 0 12px;
+}
+/* ใช้กับปุ่มที่ถูกเลือก */
+button.active {
+  background-color: #10b981 !important;  /* สีเขียว */
+  color: white !important;
+}
+
+/* ===== ปุ่มใส่ตะกร้า ===== */
+.detail-card > button {
+  margin-top: 24px;
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: #10b981; /* สีเขียวมินต์ */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.detail-card > button:hover {
+  background-color: #059669;
 }
 

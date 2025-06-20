@@ -2,6 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
   <title>รายละเอียดเมนู</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -17,7 +18,7 @@
     let sweet = "";
 
     function updateDetail() {
-      card.innerHTML = `
+      /*card.innerHTML = `
         <h2>${item.name}</h2>
         <img src="${item.image}">
         <div>
@@ -38,7 +39,34 @@
         </div>
         <p>฿${item.price * quantity}</p>
         <button onclick="addToCart()">ใส่ตะกร้า</button>
-      `;
+      `;*/
+
+         card.innerHTML = `
+         <h2>${item.name}</h2>
+         <img src="${item.image}">
+         <div>
+          <button onclick="changeQty(-1)">−</button>
+          <span>${quantity}</span>
+          <button onclick="changeQty(1)">+</button>
+         </div>
+         <div>
+           <p>อุณหภูมิ</p>
+           <div class="temp-buttons">
+           <button onclick="setTemp('เย็น')">เย็น</button>
+           <button onclick="setTemp('ร้อน')">ร้อน</button>
+         </div>
+         </div>
+         <div>
+           <p>ความหวาน</p>
+           <div class="sweet-buttons">
+           <button onclick="setSweet('หวานมาก')">หวานมาก</button>
+           <button onclick="setSweet('หวานปกติ')">หวานปกติ</button>
+           <button onclick="setSweet('หวานน้อย')">หวานน้อย</button>
+         </div>
+         </div>
+         <p>฿${item.price * quantity}</p>
+         <button onclick="addToCart()">ใส่ตะกร้า</button>
+       `;
     }
 
     function changeQty(amount) {
@@ -47,11 +75,29 @@
     }
 
     function setTemp(val) {
-      temp = val;
+       temp = val;
+
+     // ลบ .active จากปุ่มทุกปุ่มในกลุ่มอุณหภูมิ
+       document.querySelectorAll('.temp-buttons button').forEach(btn => {
+       btn.classList.remove('active');
+  });
+
+      // ใส่ .active ให้ปุ่มที่ถูกคลิก
+       const clickedBtn = Array.from(document.querySelectorAll('.temp-buttons button')).find(btn => btn.innerText === val);
+       if (clickedBtn) clickedBtn.classList.add('active');
     }
 
     function setSweet(val) {
       sweet = val;
+      
+      // ลบ .active จากปุ่มทุกปุ่มในกลุ่มความหวาน
+      document.querySelectorAll('.sweet-buttons button').forEach(btn => {
+      btn.classList.remove('active');
+  });
+
+      // ใส่ .active ให้ปุ่มที่ถูกคลิก
+      const clickedBtn = Array.from(document.querySelectorAll('.sweet-buttons button')).find(btn => btn.innerText === val);
+      if (clickedBtn) clickedBtn.classList.add('active');
     }
 
     function addToCart() {

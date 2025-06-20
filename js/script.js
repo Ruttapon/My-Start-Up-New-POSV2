@@ -1,8 +1,9 @@
 
 const menu = [
   { id: 1, name: "ชาเขียวมัจฉะ", price: 75, image: "assets/greentea.png" },
-  { id: 2, name: "ชาไทย", price: 75, image: "assets/greentea.png" },
-  { id: 3, name: "กาแฟ", price: 75, image: "assets/greentea.png" }
+  { id: 2, name: "ชาไทย", price: 50, image: "assets/greentea.png" },
+  { id: 3, name: "น้ำส้ม", price: 50, image: "assets/greentea.png" },
+  { id: 4, name: "กาแฟ", price: 75, image: "assets/greentea.png" }
 ];
 
 const menuList = document.getElementById("menuList");
